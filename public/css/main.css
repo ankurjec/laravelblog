@@ -1,0 +1,46 @@
+.user-profile{
+    text-align:center;
+}
+.user-profile p{
+    font-size: 16px;
+    font-weight: bold;
+}
+.categories{
+    text-align: unset;
+}
+.post-box{
+    text-align:center;
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+}
+.post-box:last-child{
+    border: none;
+}
+.post-box > .title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.post-box > .body{
+    text-align: justify;
+}
+.post-box > p >a{
+    padding-left:15px;
+    text-decoration: none;;
+}
+.post-box > p >a:hover{
+    color:blue;
+    font-weight: bold;
+}
+.comment{
+    text-align: left;
+    margin-top: 15px;
+}
+.comment-box{
+    border-bottom: 1px dotted #ccc;
+}
+.comment-box:last-child{
+    border-bottom: none;
+}
+.comment-box p{
+    margin-top:10px;
+}
