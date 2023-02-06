@@ -41,6 +41,7 @@
 <link href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <center><div style="width: 70%">
+    @if(count($posts) > 0)
     <h3 style="color: rgb(94, 94, 233)"><marquee>Latest Blogs by our users</marquee></h3>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -85,7 +86,9 @@
             </tr>
         </tfoot>
     </table>
-
+    @else
+    Post is not available   
+@endif   
 </div>
 
 </center>
