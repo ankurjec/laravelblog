@@ -5,6 +5,7 @@ Users are user, admin and public.
 public user dont'have to login. They can view the blogs post appoved by admin which are posted by user.
 To run this project follow the steps below
 First Clone/download zip this repository.
+Use Master Branch.
 In the project folder run 'npm install'.
 run 'composer install'.
 run 'composer update'.
