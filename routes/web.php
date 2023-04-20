@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::resource('/', 'PublicController');
+Route::get('/registery', 'Auth\RegisterController@showRegstrationForm');
+Route::get('/register/{id}', 'Auth\RegisterController@showRegistrationForm');
 
 // Route::get('/public',[
 //     'uses' => 'PublicController@index',
@@ -41,6 +43,22 @@ Route::group(['middleware' => 'auth'], function(){
         'uses' => 'HomeController@index',
         'as' => 'home'
     ]);
+
+    Route::get('/random-string',[
+        'uses' => 'HomeController@generateRandomString',
+        'as' => 'random-string'
+    ]);
+    // Route::get('/random-string', 'HomeController@generateRandomString');
+    Route::any('/generate-password', function (Request $request) {
+        
+        $user = Auth::user();
+        $token = Str::random(12); 
+        $user->referral_code = ($token);
+        $user->save();
+        return 'http://127.0.0.1:8000/register/' .$token; 
+    });
+    Route::post('/save-password', 'HomeController@save');
+
     Route::get('/newPost', [
         'uses' => 'PostController@newpost',
         'as' => 'newPost'

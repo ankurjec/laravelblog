@@ -22,6 +22,25 @@
                 <p><img src="{{asset('uploads/profile/user.png')}}" class="img-fluid img-thumbnail"/></p>
             @endif 
             </div>
+            @if($referral_code == NULL)
+            <button id="botn" onclick="generateRandomPassword ()">Generate Referral Link</button>
+            @else
+            <h3>Link Already Generated </h3>
+            <?php 
+           $currentUrl = 'http://127.0.0.1:8000/register';
+        //   $token = Str::random(40);
+$userId = auth()->user()->id;
+$fullUrl = $currentUrl . '/' . $referral_code;
+
+echo $fullUrl;?>
+            <!-- echo $currentUrl;?> -->
+
+            @endif 
+
+            <h2 id="password"></h2>
+
+
+
             <div class="categories">
                 <h4>Categories</h4>
                 <div>
@@ -42,6 +61,12 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">Dashboard
+                @if($referred_user_name == NULL)
+                <p>You are Not Registered under any user.</p>
+                
+            @else
+                <p>You are  Registered under:{{$referred_user_name->name}} </p>
+            @endif 
 
                     <div class="pull-right mb-2">
                         <a class="btn btn-success" href="{{ route('newCategory') }}"> Add Category</a>
@@ -78,3 +103,33 @@
     </div>
 </div>
 @endsection
+
+<script type = text/javascript>
+    function generateRandomPassword () {
+        
+        $.ajax({
+            url: '/generate-password',
+            success: function (data) {
+                $('#password').html(data);
+            }
+        });
+        var element = document.getElementById("botn");
+  element.onclick = "";
+
+  function savePassword(password) {
+    $.ajax({
+        url: '/save-password',
+        method: 'POST',
+        data: {password: password},
+        success: function (data) {
+            console.log(data);
+
+            console.log('Password saved successfully');
+        },
+        error: function (xhr, status, error) {
+            console.log('Error saving password:', error);
+        }
+    });
+}
+    }
+</script>

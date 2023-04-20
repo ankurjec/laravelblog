@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -60,6 +69,12 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                                            <?php 
+                            $currentUrl = url()->current();
+                            $lastPart = basename($currentUrl);
+                            echo $lastPart;
+                                             ?>
+                            <input type="hidden" name="referral_code" value="{{($lastPart) }}">
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
